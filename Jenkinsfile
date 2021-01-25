@@ -9,18 +9,19 @@ pipeline {
 
     stage('build') {
       steps {
-        sh 'mvn clean instal'
+        sh 'mvn clean install'
       }
     }
 
     stage('deploy') {
       steps {
-        sh 'cp *.jar /var/jenkins'
-        sh 'java -jar -Xms1024m -Xmx1024m  *.jar > catalina.out &'
+        sh '''cp *.jar /var/jenkins /var/jenkins_home
+'''
+        sh 'java -jar -Xms1024m -Xmx1024m Â *.jar > catalina.out &'
       }
     }
 
-    stage('') {
+    stage('test') {
       steps {
         sh 'mvn test'
       }
