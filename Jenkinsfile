@@ -1,12 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('checkout') {
-      steps {
-        git(branch: 'master', url: 'https://github.com/chenlal/httprunner.git', changelog: true)
-      }
-    }
-
     stage('build') {
       steps {
         sh 'mvn clean install'
